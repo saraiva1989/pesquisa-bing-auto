@@ -17,7 +17,6 @@
             color: white;
             display: flex;
             justify-content: center;
-            align-items: center;
         }
 
         .gradient-bg {
@@ -34,6 +33,10 @@
         }
 
         @media screen and (min-width: 768px) {
+            body {
+                align-items: center;
+            }
+
             .btn-pesquisar:hover {
                 background-color: #460779;
                 color: white;
@@ -54,7 +57,7 @@
     </style>
 </head>
 
-<body class="d-flex align-items-center justify-content-center vh-100 gradient-bg">
+<body class="gradient-bg">
     <!-- centralizar div horizontal e vertical com bootstrap 5 -->
 
     <div class="container text-center">

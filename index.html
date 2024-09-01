@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa Bing</title>
+</head>
+
+<body>
+    <div>
+        <h1>Pesquisa Bing</h1>
+        <button id="pesquisar">Iniciar Pesquisas</button>
+    </div>
+
+    <script>
+        document.getElementById('pesquisar').addEventListener('click', () => {
+            pesquisar();
+        });
+
+        async function pesquisar() {
+            let request = await fetch('words.json');
+            let response = await request.json();
+            let qtdPalavras = response.length;
+            let totalPesquisada = 0;
+
+            const interval = setInterval(() => {
+                //gerar numero aleatorio de 0 a 2288
+                let random = Math.floor(Math.random() * qtdPalavras);
+                let word = response[random];
+                window.open(`https://www.bing.com/news/search?q=${word}&qs=n&form=QBNT&sp=-1&lq=0&pq=cadilac&sc=10-7&sk=&cvid=28352A10B5F5455489D1A7875CCBE731&ghsh=0&ghacc=0&ghpl=`, '_blank');
+                //remover a palavra procurada da lista
+                response.splice(random, 1);
+                qtdPalavras = response.length;
+                totalPesquisada++;
+
+                if (totalPesquisada == 30) {
+                    clearInterval(interval);
+                }
+            }, 7000);
+
+        }
+    </script>
+</body>
+
+</html>
